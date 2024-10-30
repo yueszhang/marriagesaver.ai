@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const OpenAI = require('openai');
+const path = require('path')
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -27,7 +28,7 @@ const openai = new OpenAI({
 
 // Middleware
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route to handle chat messages
 app.post('/chat', async (req, res) => {
@@ -52,3 +53,5 @@ app.post('/chat', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
+export default app;
