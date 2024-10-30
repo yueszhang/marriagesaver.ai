@@ -25,19 +25,20 @@ app.use(express.static('public'));
 
 // Route to handle chat messages
 app.post('/chat', async (req, res) => {
-    const { message } = req.body;
+    const apiKey = process.env.OPENAI_API_KEY; // Access directly within function
+    const openai = new OpenAI({
+        apiKey: apiKey,
+    });
 
     try {
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: message }],
+            messages: [{ role: 'user', content: req.body.message }],
         });
-
-        const botReply = response.choices[0].message.content;
-        res.json({ reply: botReply });
+        res.json({ reply: response.choices[0].message.content });
     } catch (error) {
-        console.error("Error processing the request:", error);
-        res.status(500).send('Error processing your request.');
+        console.error("Error processing request:", error);
+        res.status(500).send('Error: Unable to Send Message');
     }
 });
 
