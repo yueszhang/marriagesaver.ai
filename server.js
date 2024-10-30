@@ -8,6 +8,12 @@ const port = process.env.PORT || 3000;
 // Load environment variables
 require('dotenv').config();
 
+//Delete after testing
+console.log("Environment Variables:");
+console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY || "Not found");
+console.log("DATABASE_URL:", process.env.DATABASE_URL || "Not found");
+console.log("CLERK_API_KEY:", process.env.CLERK_API_KEY || "Not found");
+
 // Ensure the API key is set
 if (!process.env.OPENAI_API_KEY) {
     console.error("Error: OPENAI_API_KEY is not set in the environment variables.");
