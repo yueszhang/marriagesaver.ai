@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cupple.ai</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles for fade-in animation */
         .fade-in {
@@ -16,111 +17,142 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div id="app" class="p-6 bg-white rounded-lg shadow-lg w-full max-w-md">
-        <!-- Title -->
-        <h1 class="text-3xl font-bold text-center text-blue-600 mb-2">MarriageSaver.ai</h1>
-        
-        <!-- Slogan -->
-        <div class="text-center text-gray-600 mb-4">
-            <p class="italic">Use AI to guess what they want to eat</p>
-            <p class="italic">Use AI to plan your next date</p>
-            <p class="italic">Save thousands on couples therapy</p>
-        </div>
-        
-        <!-- Chat messages -->
+<body class="bg-white">
+  <header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Cupple.ai</span>
+          <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Cupple.ai logo">
+        </a>
+      </div>
+      <div class="flex lg:hidden">
+        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a href="#" class="text-sm font-semibold text-gray-900">Product</a>
+        <a href="#" class="text-sm font-semibold text-gray-900">Features</a>
+        <a href="#" class="text-sm font-semibold text-gray-900">About</a>
+        <a href="#" class="text-sm font-semibold text-gray-900">Contact</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="#" class="text-sm font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="relative isolate px-6 pt-32 lg:px-8">
+    <!-- Slogan Section -->
+    <div class="text-center mx-auto max-w-2xl py-16">
+        <h1 class="text-5xl font-bold text-gray-900">Cupple.ai</h1>
+        <p class="mt-4 text-lg text-gray-600">Using AI to enhance your relationship</p>
+        <ul class="mt-4 space-y-2 text-lg text-gray-500">
+            <li>• Use AI to guess what they want to eat</li>
+            <li>• Use AI to plan your next date</li>
+            <li>• Save thousands on couples therapy</li>
+        </ul>
+    </div>
+
+    <!-- Chat Interface Section -->
+    <div id="app" class="mx-auto max-w-md bg-white p-6 rounded-lg shadow-lg">
         <div id="messages" class="border p-4 bg-gray-50 h-64 overflow-y-auto mb-4 rounded-md"></div>
         
         <!-- Message input -->
         <input type="text" id="messageInput" class="border border-gray-300 p-2 w-full rounded-md mb-2" placeholder="Type a message...">
-        <button id="sendButton" class="bg-blue-500 text-white p-2 w-full rounded-md hover:bg-blue-600 transition-colors">Send</button>
+        <button id="sendButton" class="bg-indigo-600 text-white p-2 w-full rounded-md hover:bg-indigo-500 transition-colors">Send</button>
     </div>
-    
-    <script>
-        const messageInput = document.getElementById('messageInput');
-        const messagesDiv = document.getElementById('messages');
-        const sendButton = document.getElementById('sendButton');
+  </div>
 
-        function addMessage(content, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.className = `flex items-start mb-2 fade-in ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+  <script>
+    const messageInput = document.getElementById('messageInput');
+    const messagesDiv = document.getElementById('messages');
+    const sendButton = document.getElementById('sendButton');
 
-            // Create an icon element for user or bot
-            const icon = document.createElement('img');
-            icon.className = 'w-6 h-6 rounded-full mr-2';
-            icon.src = sender === 'user' ? 'https://via.placeholder.com/40?text=U' : 'https://via.placeholder.com/40?text=B';
-            icon.alt = sender === 'user' ? 'User' : 'Bot';
+    function addMessage(content, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.className = `flex items-start mb-2 fade-in ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
 
-            // Create the message text element
-            const textElement = document.createElement('div');
-            textElement.className = `p-2 rounded-lg ${sender === 'user' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-700'}`;
-            textElement.textContent = content;
+        // Create an icon element for user or bot
+        const icon = document.createElement('img');
+        icon.className = 'w-6 h-6 rounded-full mr-2';
+        icon.src = sender === 'user' ? 'https://via.placeholder.com/40?text=U' : 'https://via.placeholder.com/40?text=B';
+        icon.alt = sender === 'user' ? 'User' : 'Bot';
 
-            // Append icon and text to the message element
-            if (sender === 'user') {
-                messageElement.appendChild(textElement);
-                messageElement.appendChild(icon);
-            } else {
-                messageElement.appendChild(icon);
-                messageElement.appendChild(textElement);
-            }
+        // Create the message text element
+        const textElement = document.createElement('div');
+        textElement.className = `p-2 rounded-lg ${sender === 'user' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-700'}`;
+        textElement.textContent = content;
 
-            // Add the message to the chat
-            messagesDiv.appendChild(messageElement);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        // Append icon and text to the message element
+        if (sender === 'user') {
+            messageElement.appendChild(textElement);
+            messageElement.appendChild(icon);
+        } else {
+            messageElement.appendChild(icon);
+            messageElement.appendChild(textElement);
         }
 
-        async function sendMessage() {
-            const userMessage = messageInput.value;
-            if (!userMessage) return;
+        // Add the message to the chat
+        messagesDiv.appendChild(messageElement);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
 
-            // Display the user's message
-            addMessage(userMessage, 'user');
-            messageInput.value = '';
+    async function sendMessage() {
+        const userMessage = messageInput.value;
+        if (!userMessage) return;
 
-            // Show typing indicator
-            const typingIndicator = document.createElement('div');
-            typingIndicator.className = 'text-left text-gray-500 italic fade-in';
-            typingIndicator.textContent = 'Bot is typing...';
-            messagesDiv.appendChild(typingIndicator);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        // Display the user's message
+        addMessage(userMessage, 'user');
+        messageInput.value = '';
 
-            try {
-                const response = await fetch('/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ message: userMessage }),
-                });
+        // Show typing indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'text-left text-gray-500 italic fade-in';
+        typingIndicator.textContent = 'Bot is typing...';
+        messagesDiv.appendChild(typingIndicator);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-                if (!response.ok) {
-                    throw new Error('Error sending message');
-                }
+        try {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage }),
+            });
 
-                const data = await response.json();
-
-                // Remove typing indicator
-                messagesDiv.removeChild(typingIndicator);
-
-                // Add bot's response
-                addMessage(data.reply, 'bot');
-            } catch (error) {
-                console.error('Error:', error);
-                messagesDiv.removeChild(typingIndicator); // Remove typing indicator if there's an error
-                addMessage('Error: Unable to send message.', 'bot');
+            if (!response.ok) {
+                throw new Error('Error sending message');
             }
+
+            const data = await response.json();
+
+            // Remove typing indicator
+            messagesDiv.removeChild(typingIndicator);
+
+            // Add bot's response
+            addMessage(data.reply, 'bot');
+        } catch (error) {
+            console.error('Error:', error);
+            messagesDiv.removeChild(typingIndicator); // Remove typing indicator if there's an error
+            addMessage('Error: Unable to send message.', 'bot');
         }
+    }
 
-        // Event listener for the send button
-        sendButton.addEventListener('click', sendMessage);
+    // Event listener for the send button
+    sendButton.addEventListener('click', sendMessage);
 
-        // Event listener for pressing the Enter key
-        messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-    </script>
+    // Event listener for pressing the Enter key
+    messageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+  </script>
 </body>
 </html>
