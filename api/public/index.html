@@ -16,6 +16,13 @@
             100% { opacity: 1; }
         }
     </style>
+        <script
+        async
+        crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_c2luY2VyZS13b3JtLTI0LmNsZXJrLmFjY291bnRzLmRldiQ"
+        src="https://sincere-worm-24.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js"
+        type="text/javascript">
+      </script>
 </head>
 <body class="bg-white">
   <header class="absolute inset-x-0 top-0 z-50">
@@ -44,15 +51,58 @@
     </div>
     <!-- Container for Log In and Sign Up buttons -->
     <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center space-x-4">
-        <!-- Log in Button -->
-        <a href="#" class="text-sm font-semibold text-gray-900 hover:text-indigo-600 flex items-center">
-            Log in <span aria-hidden="true">&rarr;</span>
-        </a>
-        <!-- Sign Up Button -->
-        <a href="#" class="text-sm font-semibold text-white bg-indigo-600 py-2 px-4 rounded-md shadow-sm hover:bg-indigo-500 transition-colors flex items-center">
-            Sign Up
-        </a>
-    </div>    
+      <!-- Log in Button -->
+      <a id="loginButton" href="#" class="text-sm font-semibold text-gray-900 hover:text-indigo-600 flex items-center">
+          Log in <span aria-hidden="true">&rarr;</span>
+      </a>
+      <!-- Sign Up Button -->
+      <a id="signUpButton" href="#" class="text-sm font-semibold text-white bg-indigo-600 py-2 px-4 rounded-md shadow-sm hover:bg-indigo-500 transition-colors flex items-center">
+          Sign Up
+      </a>
+  </div>
+  <!-- Clerk Authentication Components -->
+<div id="signUpForm" class="hidden">
+  <clerk-sign-up></clerk-sign-up>
+</div>
+
+<div id="logInForm" class="hidden">
+  <clerk-sign-in></clerk-sign-in>
+</div>
+<script>
+  const loginButton = document.getElementById('loginButton');
+  const signUpButton = document.getElementById('signUpButton');
+  const signUpForm = document.getElementById('signUpForm');
+  const logInForm = document.getElementById('logInForm');
+
+  // Show the Sign Up form when the "Sign Up" button is clicked
+  signUpButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      signUpForm.classList.toggle('hidden');
+      logInForm.classList.add('hidden');
+  });
+
+  // Show the Log In form when the "Log In" button is clicked
+  loginButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      logInForm.classList.toggle('hidden');
+      signUpForm.classList.add('hidden');
+  });
+
+  // Initialize Clerk
+  Clerk.mountSignUp(signUpForm);
+  Clerk.mountSignIn(logInForm);
+</script>
+<style>
+  #signUpForm, #logInForm {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
     </nav>
   </header>
 
