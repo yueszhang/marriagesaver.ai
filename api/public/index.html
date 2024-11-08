@@ -42,9 +42,16 @@
             <a href="contact.html" class="text-sm font-semibold text-gray-900">Contact</a>
         </div>
       </div>
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
-      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end space-x-6">
+        <!-- Log in Button -->
+        <a href="#" class="text-sm font-semibold text-gray-900 hover:text-indigo-600">
+            Log in <span aria-hidden="true">&rarr;</span>
+        </a>
+        <!-- Sign Up Button -->
+        <a href="#" class="text-sm font-semibold text-white bg-indigo-600 px-4 py-2 rounded-md shadow-sm hover:bg-indigo-500 transition-colors">
+            Sign Up
+        </a>
+    </div>
     </nav>
   </header>
 
@@ -52,10 +59,10 @@
     <!-- Slogan Section -->
     <div class="text-center mx-auto max-w-2xl py-16">
         <h1 class="text-5xl font-bold text-gray-900">Cupple.ai</h1>
-        <p class="mt-4 text-lg text-gray-600">Using AI to enhance your relationship</p>
+        <p class="mt-4 text-lg text-gray-600">You personal wingman, therapist, and dating coach</p>
         <ul class="mt-4 space-y-2 text-lg text-gray-500">
-            <li>• Use AI to guess what they want to eat</li>
-            <li>• Use AI to plan your next date</li>
+            <li>• No more guessing what they want to eat</li>
+            <li>• Help plan your next anniversary date</li>
             <li>• Save thousands on couples therapy</li>
         </ul>
     </div>
@@ -65,7 +72,7 @@
         <div id="messages" class="border p-4 bg-gray-50 h-64 overflow-y-auto mb-4 rounded-md"></div>
         
         <!-- Message input -->
-        <input type="text" id="messageInput" class="border border-gray-300 p-2 w-full rounded-md mb-2" placeholder="Type a message...">
+        <input type="text" id="messageInput" class="border border-gray-300 p-2 w-full rounded-md mb-2" placeholder="Ask your relationship guru...">
         <button id="sendButton" class="bg-indigo-600 text-white p-2 w-full rounded-md hover:bg-indigo-500 transition-colors">Send</button>
     </div>
   </div>
