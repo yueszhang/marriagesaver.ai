@@ -22,9 +22,17 @@
                 <a href="about.html" class="text-sm font-semibold text-gray-900">About</a>
                 <a href="contact.html" class="text-sm font-semibold text-gray-900">Contact</a>
             </div>
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="#" class="text-sm font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
-              </div>
+                <!-- Container for Log In and Sign Up buttons -->
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center space-x-4">
+        <!-- Log in Button -->
+        <a id="loginButton" href="#" class="text-sm font-semibold text-gray-900 hover:text-indigo-600 flex items-center">
+            Log in <span aria-hidden="true">&rarr;</span>
+        </a>
+        <!-- Sign Up Button -->
+        <a id="signUpButton" href="#" class="text-sm font-semibold text-white bg-indigo-600 py-2 px-4 rounded-md shadow-sm hover:bg-indigo-500 transition-colors flex items-center">
+            Sign Up
+        </a>
+    </div>
         </nav>
     </header>
 
